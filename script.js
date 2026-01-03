@@ -1,6 +1,5 @@
 const API_URL =
     "https://script.google.com/macros/s/AKfycbyIakCEBoezqnxfpj2PYO6R5ImkmN2RF3DpLwc1nYf0Mc6cLRA7NaQocB4eXxn2hJDn/exec";
-
 const form = document.getElementById("transactionForm");
 const yeetBtn = document.getElementById("yeetBtn");
 const historyContainer = document.getElementById("historyContainer");
@@ -8,6 +7,7 @@ const emptyMsg = document.getElementById("emptyMsg");
 
 let transactions = [];
 
+// Initialize: Load data from Google Sheets
 window.addEventListener("DOMContentLoaded", fetchTransactions);
 
 async function fetchTransactions() {
@@ -15,6 +15,7 @@ async function fetchTransactions() {
     try {
         const response = await fetch(API_URL);
         transactions = await response.json();
+        // Sort newest first based on the timestamp column (index 5)
         transactions.sort(
             (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
         );
@@ -32,6 +33,7 @@ form.addEventListener("input", () => {
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Disable UI during sync
     yeetBtn.disabled = true;
     yeetBtn.innerText = "YEETING...";
 
@@ -40,7 +42,7 @@ form.addEventListener("submit", async (e) => {
         amount: parseFloat(document.getElementById("amount").value).toFixed(2),
         description:
             document.getElementById("description").value || "No Description",
-        SouceOfPayment: document.getElementById("source").value, // Mapping to the specific column name
+        source: document.getElementById("source").value,
         category: document.getElementById("category").value,
     };
 
@@ -51,9 +53,10 @@ form.addEventListener("submit", async (e) => {
         });
 
         if (response.ok) {
+            console.log("🚀 Data synced to Google Sheets!");
+            // Refresh list from sheet to ensure sync
             await fetchTransactions();
             form.reset();
-            yeetBtn.disabled = true;
         }
     } catch (error) {
         alert("Yeet failed! Check your connection.");
@@ -68,6 +71,7 @@ function renderHistory() {
         emptyMsg.classList.add("hidden");
     } else {
         emptyMsg.classList.remove("hidden");
+        emptyMsg.innerText = "No transactions yet. Yeet something!";
     }
 
     const groups = {};
@@ -100,9 +104,6 @@ function renderHistory() {
             const card = document.createElement("div");
             card.className =
                 "bg-custom-card p-4 rounded-xl flex justify-between items-center shadow-sm";
-            // Note: In history, we check for both spelling variants in case old data exists
-            const sourceDisplay = t.SouceOfPayment || t.source || "Unknown";
-
             card.innerHTML = `
                 <div class="text-sm">
                     <p class="font-bold">${new Date(t.date).toLocaleDateString(
@@ -110,7 +111,7 @@ function renderHistory() {
                         { day: "numeric", month: "short", year: "numeric" }
                     )}</p>
                     <p class="text-gray-600">${t.description}</p>
-                    <p class="text-xs text-gray-500">${sourceDisplay} • ${
+                    <p class="text-xs text-gray-500">${t.source} • ${
                 t.category
             }</p>
                 </div>
