@@ -1,0 +1,57 @@
+body {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+    background-color: #1a1a1a;
+}
+
+.bg-custom-gray { background-color: #d9d9d9; }
+.bg-custom-card { background-color: #e5e5e5; }
+.yeet-yellow { background-color: #faff00; }
+
+.label-text {
+    @apply block text-sm font-semibold mb-1;
+}
+
+/* Ensures all input fields and dropdowns are identical in size */
+.form-input {
+    width: 100%;
+    padding: 0.75rem; /* Equivalent to p-3 */
+    border-radius: 0.5rem; /* Equivalent to rounded-lg */
+    background-color: #e5e5e5; /* bg-custom-card */
+    border: none;
+    outline: none;
+    font-family: inherit;
+    display: block;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    box-shadow: 0 0 0 2px #facc15; /* focus:ring-yellow-400 */
+}
+
+.yeet-btn {
+    background-color: #faff00;
+    width: 40%; /* w-2/5 */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 1rem;
+    border-radius: 9999px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-style: italic;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s;
+}
+
+.yeet-btn:active { transform: scale(0.95); }
+
+.yeet-btn:disabled {
+    background-color: #e2e2a4;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.custom-scroll::-webkit-scrollbar { width: 6px; }
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
