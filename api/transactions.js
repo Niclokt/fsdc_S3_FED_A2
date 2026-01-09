@@ -2,8 +2,8 @@
 
 export default async function handler(req, res) {
     // 1. Your Google Script URL
-    const GOOGLE_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbyIakCEBoezqnxfpj2PYO6R5ImkmN2RF3DpLwc1nYf0Mc6cLRA7NaQocB4eXxn2hJDn/exec";
+    const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL;
+    //"https://script.google.com/macros/s/AKfycbyIakCEBoezqnxfpj2PYO6R5ImkmN2RF3DpLwc1nYf0Mc6cLRA7NaQocB4eXxn2hJDn/exec";
 
     try {
         if (req.method === "GET") {
