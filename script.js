@@ -1,5 +1,4 @@
-const API_URL =
-    "https://script.google.com/macros/s/AKfycbyIakCEBoezqnxfpj2PYO6R5ImkmN2RF3DpLwc1nYf0Mc6cLRA7NaQocB4eXxn2hJDn/exec";
+const API_URL = "/api/transactions";
 const form = document.getElementById("transactionForm");
 const yeetBtn = document.getElementById("yeetBtn");
 const historyContainer = document.getElementById("historyContainer");
