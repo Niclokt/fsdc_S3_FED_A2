@@ -1,0 +1,24 @@
+{
+  "name": "fsdc_s3_fed_a2",
+  "version": "1.0.0",
+  "description": "`One or two paragraphs providing an overview of your project. Tell us about your project.`",
+  "main": "script.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Niclokt/fsdc_S3_FED_A2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Niclokt/fsdc_S3_FED_A2/issues"
+  },
+  "homepage": "https://github.com/Niclokt/fsdc_S3_FED_A2#readme"
+}
